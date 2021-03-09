@@ -1,15 +1,8 @@
-import React from 'react';
-import styled from 'styled-components'
+import React from 'react'
+import Home from './pages/Home'
 
-const Wrapper = styled.div`
-  margin: 40px auto;
-  width: 1000px;
-`
+// no routing because we target only 1 page. else, we can use react-router-dom
 
-const App = () => (
-  <Wrapper>
-    Hi !
-  </Wrapper>
-)
+const App = () => <Home />
 
-export default App;
+export default App
