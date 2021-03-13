@@ -5,8 +5,7 @@ import Map from '../molecules/Map'
 
 const StyledLocationDetails = styled.div`
   display: block;
-  background-color: purple;
-  padding: 10px;
+  padding: 15px;
   flex: 1;
 `
 

@@ -7,9 +7,10 @@ import SelectionCard from '../molecules/SelectionCard'
 
 const StyledLocationList = styled.div`
   display: block;
-  background-color: red;
   padding: 10px;
   width: 300px;
+  max-height: 100%;
+  overflow-y: auto;
 `
 
 const LocationList = (props) => {
@@ -19,6 +20,7 @@ const LocationList = (props) => {
     api
       .get('/cities.json')
       .then(({ data }) => {
+        data.sort((a, b) => a.city.localeCompare(b.city))
         setLocations(data)
       })
       .catch((err) => {
