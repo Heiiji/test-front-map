@@ -31,7 +31,7 @@ const LocationList = (props) => {
   return (
     <StyledLocationList>
       {locations.map((location) => (
-        <SelectionCard onClick={props.onSelectLocation} key={location.rank} location={location} />
+        <SelectionCard onClick={() => props.onSelectLocation(location)} key={location.rank} location={location} />
       ))}
     </StyledLocationList>
   )

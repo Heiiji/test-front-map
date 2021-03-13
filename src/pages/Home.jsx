@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import LocationDetails from '../organism/LocationDetails'
@@ -13,14 +13,22 @@ const Wrapper = styled.div`
   position: relative;
 `
 
-const Home = () => (
-  <div>
-    <h1 style={{ textAlign: 'center' }}>Amazing city viewer</h1>
-    <Wrapper>
-      <LocationList />
-      <LocationDetails />
-    </Wrapper>
-  </div>
-)
+const Home = () => {
+  const [location, SetLocation] = useState()
+
+  const onSelectLocation = (city) => {
+    SetLocation(city)
+  }
+
+  return (
+    <div>
+      <h1 style={{ textAlign: 'center' }}>Amazing city viewer</h1>
+      <Wrapper>
+        <LocationList onSelectLocation={onSelectLocation} />
+        <LocationDetails location={location} />
+      </Wrapper>
+    </div>
+  )
+}
 
 export default Home

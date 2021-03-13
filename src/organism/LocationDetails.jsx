@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Map from '../molecules/Map'
@@ -9,10 +10,14 @@ const StyledLocationDetails = styled.div`
   flex: 1;
 `
 
-const LocationDetails = () => (
+const LocationDetails = ({ location }) => (
   <StyledLocationDetails>
-    <Map />
+    <Map positionX={location ? location.latitude : 51} positionY={location ? location.longitude : 0} />
   </StyledLocationDetails>
 )
+
+LocationDetails.propTypes = {
+  location: PropTypes.object
+}
 
 export default LocationDetails
