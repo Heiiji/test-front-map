@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import api from '../_helpers/api'
 
 import SelectionCard from '../molecules/SelectionCard'
+import SearchBar from '../molecules/SearchBar'
 
 const StyledLocationList = styled.div`
   display: block;
@@ -15,6 +16,7 @@ const StyledLocationList = styled.div`
 
 const LocationList = (props) => {
   const [locations, setLocations] = useState([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     api
@@ -28,11 +30,20 @@ const LocationList = (props) => {
       })
   })
 
+  const onSearchUpdate = (value) => {
+    setSearch(value)
+  }
+
   return (
     <StyledLocationList>
-      {locations.map((location) => (
-        <SelectionCard onClick={() => props.onSelectLocation(location)} key={location.rank} location={location} />
-      ))}
+      <SearchBar onChange={onSearchUpdate} />
+      {locations.reduce(
+        (list, location) =>
+          location.city.toLowerCase().includes(search.toLowerCase())
+            ? list.concat([<SelectionCard onClick={() => props.onSelectLocation(location)} key={location.rank} location={location} />])
+            : list,
+        []
+      )}
     </StyledLocationList>
   )
 }
