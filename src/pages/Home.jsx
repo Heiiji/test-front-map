@@ -24,7 +24,7 @@ const Home = () => {
     <div>
       <h1 style={{ textAlign: 'center' }}>Amazing city viewer</h1>
       <Wrapper>
-        <LocationList onSelectLocation={onSelectLocation} />
+        <LocationList selectedLocation={location} onSelectLocation={onSelectLocation} />
         <LocationDetails location={location} />
       </Wrapper>
     </div>

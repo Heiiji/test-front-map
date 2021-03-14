@@ -8,12 +8,14 @@ const StyledSelectionCard = styled.div`
   transition: 0.3s;
   display: block;
   background-color: white;
+  transform: ${({ isSelected }) => (isSelected ? 'scale(1.06)' : '')};
   border-radius: ${({ theme }) => theme.borderRadius};
   margin: 5px;
   padding: 10px;
   cursor: pointer;
   border: 1px solid ${({ theme }) => theme.secondaryColor};
   h2 {
+    font-size: 1.2em;
     margin: 0;
   }
   .selectionCardState {
@@ -29,11 +31,11 @@ const StyledSelectionCard = styled.div`
   }
 `
 
-const SelectionCard = (props) => (
-  <StyledSelectionCard onClick={props.onClick}>
+const SelectionCard = ({ location, onClick, selectedLocation }) => (
+  <StyledSelectionCard isSelected={selectedLocation?.rank === location?.rank} onClick={onClick}>
     <h2>
-      {props.location.city}
-      <span className='selectionCardState'>({props.location.state})</span>
+      {location.city}
+      <span className='selectionCardState'>({location.state})</span>
     </h2>
     <VariationIndicator />
   </StyledSelectionCard>
@@ -41,7 +43,8 @@ const SelectionCard = (props) => (
 
 SelectionCard.propTypes = {
   location: PropTypes.object,
-  onClick: PropTypes.function
+  onClick: PropTypes.function,
+  selectedLocation: PropTypes.object
 }
 
 export default SelectionCard

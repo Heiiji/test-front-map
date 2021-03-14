@@ -14,7 +14,7 @@ const StyledLocationList = styled.div`
   overflow-y: auto;
 `
 
-const LocationList = (props) => {
+const LocationList = ({ selectedLocation, onSelectLocation }) => {
   const [locations, setLocations] = useState([])
   const [search, setSearch] = useState('')
 
@@ -40,7 +40,14 @@ const LocationList = (props) => {
       {locations.reduce(
         (list, location) =>
           location.city.toLowerCase().includes(search.toLowerCase())
-            ? list.concat([<SelectionCard onClick={() => props.onSelectLocation(location)} key={location.rank} location={location} />])
+            ? list.concat([
+                <SelectionCard
+                  selectedLocation={selectedLocation}
+                  onClick={() => onSelectLocation(location)}
+                  key={location.rank}
+                  location={location}
+                />
+              ])
             : list,
         []
       )}
@@ -49,7 +56,8 @@ const LocationList = (props) => {
 }
 
 LocationList.propTypes = {
-  onSelectLocation: PropTypes.function
+  onSelectLocation: PropTypes.function,
+  selectedLocation: PropTypes.object
 }
 
 export default LocationList
