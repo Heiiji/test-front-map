@@ -37,7 +37,7 @@ const SelectionCard = ({ location, onClick, selectedLocation }) => (
       {location.city}
       <span className='selectionCardState'>({location.state})</span>
     </h2>
-    <VariationIndicator />
+    <VariationIndicator variation={location.growth_from_2000_to_2013} />
   </StyledSelectionCard>
 )
 

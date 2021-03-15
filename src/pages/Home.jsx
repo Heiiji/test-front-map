@@ -32,7 +32,7 @@ const Home = () => {
         state: 'Client position'
       })
     })
-  })
+  }, [])
 
   return (
     <div>

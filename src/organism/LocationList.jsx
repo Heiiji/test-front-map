@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { useBottomScrollListener } from 'react-bottom-scroll-listener'
 import api from '../_helpers/api'
 
 import SelectionCard from '../molecules/SelectionCard'
@@ -17,6 +18,9 @@ const StyledLocationList = styled.div`
 const LocationList = ({ selectedLocation, onSelectLocation }) => {
   const [locations, setLocations] = useState([])
   const [search, setSearch] = useState('')
+  const [pagination, setPagination] = useState(15)
+
+  const scrollRef = useBottomScrollListener(() => setPagination(pagination + 15))
 
   useEffect(() => {
     api
@@ -35,22 +39,24 @@ const LocationList = ({ selectedLocation, onSelectLocation }) => {
   }
 
   return (
-    <StyledLocationList>
+    <StyledLocationList ref={scrollRef}>
       <SearchBar onChange={onSearchUpdate} />
-      {locations.reduce(
-        (list, location) =>
-          location.city.toLowerCase().includes(search.toLowerCase())
-            ? list.concat([
-                <SelectionCard
-                  selectedLocation={selectedLocation}
-                  onClick={() => onSelectLocation(location)}
-                  key={location.rank}
-                  location={location}
-                />
-              ])
-            : list,
-        []
-      )}
+      {locations
+        .reduce(
+          (list, location) =>
+            location.city.toLowerCase().includes(search.toLowerCase())
+              ? list.concat([
+                  <SelectionCard
+                    selectedLocation={selectedLocation}
+                    onClick={() => onSelectLocation(location)}
+                    key={location.rank}
+                    location={location}
+                  />
+                ])
+              : list,
+          []
+        )
+        .slice(0, pagination)}
     </StyledLocationList>
   )
 }
