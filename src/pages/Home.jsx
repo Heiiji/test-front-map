@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import LocationDetails from '../organism/LocationDetails'
@@ -19,6 +19,20 @@ const Home = () => {
   const onSelectLocation = (city) => {
     SetLocation(city)
   }
+
+  useEffect(() => {
+    window.navigator.geolocation.getCurrentPosition((position) => {
+      SetLocation({
+        city: 'Client position',
+        growth_from_2000_to_2013: '0%',
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        population: '1',
+        rank: '0',
+        state: 'Client position'
+      })
+    })
+  })
 
   return (
     <div>
