@@ -9,7 +9,6 @@ import SearchBar from '../molecules/SearchBar'
 
 const StyledLocationList = styled.div`
   display: block;
-  padding: 10px;
   width: 300px;
   max-height: 100%;
   overflow-y: auto;

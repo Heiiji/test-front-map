@@ -4,8 +4,10 @@ import styled from 'styled-components'
 
 const StyledSearchBar = styled.div`
   display: block;
-  position: relative;
+  position: sticky;
+  top: 0;
   padding: 5px 0;
+  background-color: white;
   input {
     width: 95%;
     padding: 3px;
