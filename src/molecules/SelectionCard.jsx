@@ -8,12 +8,12 @@ const StyledSelectionCard = styled.div`
   transition: 0.3s;
   display: block;
   background-color: white;
-  transform: ${({ isSelected }) => (isSelected ? 'scale(1.06)' : '')};
+  transform: ${({ isSelected }) => (isSelected ? 'scale(1.02)' : '')};
   border-radius: ${({ theme }) => theme.borderRadius};
   margin: 5px;
   padding: 10px;
   cursor: pointer;
-  border: 1px solid ${({ theme }) => theme.secondaryColor};
+  border: 1px solid ${({ isSelected, theme }) => (isSelected ? theme.primaryColor : 'black')};
   h2 {
     font-size: 1.2em;
     margin: 0;

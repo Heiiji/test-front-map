@@ -1,8 +1,8 @@
 const defaultTheme = {
   textColor: '#002',
-  primaryColor: '#003645',
-  secondaryColor: '#31313C',
-  tertiaryColor: '#282834',
+  primaryColor: '#084C61',
+  secondaryColor: '#DB504A',
+  tertiaryColor: '#4F6D7A',
   borderRadius: '3px'
 }
 
