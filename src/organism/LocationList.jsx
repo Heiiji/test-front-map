@@ -37,13 +37,17 @@ const LocationList = ({ selectedLocation, onSelectLocation }) => {
     setSearch(value)
   }
 
+  const isSearchMatch = (location) => {
+    return location.city.toLowerCase().includes(search.toLowerCase()) || location.state.toLowerCase().includes(search.toLowerCase())
+  }
+
   return (
     <StyledLocationList ref={scrollRef}>
       <SearchBar onChange={onSearchUpdate} />
       {locations
         .reduce(
           (list, location) =>
-            location.city.toLowerCase().includes(search.toLowerCase())
+            isSearchMatch(location)
               ? list.concat([
                   <SelectionCard
                     selectedLocation={selectedLocation}
