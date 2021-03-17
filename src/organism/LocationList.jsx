@@ -31,7 +31,7 @@ const LocationList = ({ selectedLocation, onSelectLocation }) => {
       .catch((err) => {
         console.error(err)
       })
-  })
+  }, [])
 
   const onSearchUpdate = (value) => {
     setSearch(value)
